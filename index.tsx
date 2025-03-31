@@ -1,4 +1,5 @@
-import { Image, StyleSheet, Platform, View, ScrollView, Text, FlatList } from 'react-native';
+import { Image, StyleSheet, Platform, View, ScrollView, Text, FlatList, Pressable } from 'react-native';
+import { Link } from 'expo-router'
 
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
@@ -20,6 +21,13 @@ export default function HomeScreen() {
           </View>
         )}
       />
+      <View>
+      <Link href='/Usuarios' asChild>
+          <Pressable>
+            <Text> Usuários </Text>
+          </Pressable>
+        </Link>
+      </View>
     </View>
   );
 }
@@ -55,4 +63,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#777',
   },
+  tinyLogo: {
+    width: 50,
+    height: 50,
+    marginLeft: 100,
+    marginTop: 10,
+    marginBottom: 10,
+    padding: 100,
+},
 });
