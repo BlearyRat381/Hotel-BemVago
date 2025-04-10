@@ -4,19 +4,19 @@ import { Usuarios } from '@/constants/usuarios';
 
 export default function home(){
     return(
-        <View>
+        <ScrollView>
       <FlatList
         data={Usuarios()}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <View style={styles.userContainer}>
+          <ScrollView style={styles.userContainer}>
             <Text style={styles.userId}>Id: {item.id}</Text>
             <Text style={styles.userName}>Nome: {item.Nome}</Text>
             <Text style={styles.userGroup}>Grupo: {item.nome_grupo}</Text>
-          </View>
+          </ScrollView>
         )}
       />
-        </View>
+        </ScrollView>
     )
 }
 const styles = StyleSheet.create({

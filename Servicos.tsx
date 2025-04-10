@@ -4,17 +4,17 @@ import { Servicos } from '@/constants/servicos';
 
 export default function Servico(){
     return(
-        <View>
+        <ScrollView>
       <FlatList
         data={Servicos()}
         keyExtractor={(item) => item.id_servico.toString()}
         renderItem={({ item }) => (
-          <View>
+          <ScrollView>
             <Text >Id dos Serviços: {item.id_servico}</Text>
             <Text >Nome dos Serviço: {item.nome_servico}</Text>
-          </View>
+          </ScrollView>
         )}
       />
-        </View>
+        </ScrollView>
     )
 }
