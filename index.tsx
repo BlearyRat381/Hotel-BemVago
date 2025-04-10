@@ -5,26 +5,31 @@ import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { Usuarios } from '@/constants/usuarios';
+
 
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <FlatList
-        data={Usuarios()}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.userContainer}>
-            <Text style={styles.userId}>Id: {item.id}</Text>
-            <Text style={styles.userName}>Nome: {item.Nome}</Text>
-            <Text style={styles.userGroup}>Grupo: {item.nome_grupo}</Text>
-          </View>
-        )}
-      />
       <View>
       <Link href='/Usuarios' asChild>
           <Pressable>
             <Text> Usuários </Text>
+          </Pressable>
+        </Link>
+      </View>
+
+      <View>
+      <Link href='/Servicos' asChild>
+          <Pressable>
+            <Text> Serviços </Text>
+          </Pressable>
+        </Link>
+      </View>
+
+      <View>
+      <Link href='/Agendamentos' asChild>
+          <Pressable>
+            <Text> Agendamentos </Text>
           </Pressable>
         </Link>
       </View>
