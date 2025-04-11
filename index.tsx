@@ -1,35 +1,59 @@
-import { Image, StyleSheet, Platform, View, ScrollView, Text, FlatList, Pressable } from 'react-native';
-import { Link } from 'expo-router'
+import { Image, StyleSheet, View, Text, Pressable, Dimensions } from 'react-native';
+import { Link } from 'expo-router';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-
+const { width, height } = Dimensions.get('window');
 
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <View>
-      <Link href='/Usuarios' asChild>
-          <Pressable>
-            <Text> Usuários </Text>
-          </Pressable>
-        </Link>
+      {/* Listras diagonais no fundo */}
+      <View style={StyleSheet.absoluteFill}>
+        <View style={styles.diagonalStripes}>
+          {Array.from({ length: 60 }).map((_, i) => (
+            <View
+              key={i}
+              style={[
+                styles.stripe,
+                {
+                  left: i * 20,
+                  backgroundColor:
+                    i % 3 === 0
+                      ? '#0074cc' // azul
+                      : i % 3 === 1
+                      ? '#f68b1e' // laranja
+                      : '#cc0000', // vermelho
+                },
+              ]}
+            />
+          ))}
+        </View>
       </View>
 
-      <View>
-      <Link href='/Servicos' asChild>
+      {/* Conteúdo principal */}
+      <View style={styles.content}>
+        <View style={styles.logoContainer}>
+          <Image
+            source={require('@/assets/logo.png')}
+            style={styles.logo}
+            resizeMode="contain"
+          />
+        </View>
+
+        <Link style={styles.menuItem} href='/Usuarios' asChild>
           <Pressable>
-            <Text> Serviços </Text>
+            <Text style={styles.menuText}>Usuários</Text>
           </Pressable>
         </Link>
-      </View>
 
-      <View>
-      <Link href='/Agendamentos' asChild>
+        <Link style={styles.menuItem} href='/Servicos' asChild>
           <Pressable>
-            <Text> Agendamentos </Text>
+            <Text style={styles.menuText}>Serviços</Text>
+          </Pressable>
+        </Link>
+
+        <Link style={styles.menuItem} href='/Agendamentos' asChild>
+          <Pressable>
+            <Text style={styles.menuText}>Agendamentos</Text>
           </Pressable>
         </Link>
       </View>
@@ -40,40 +64,46 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
-    backgroundColor: '#f5f5f5',
+    position: 'relative',
   },
-  userContainer: {
-    backgroundColor: '#ffffff',
-    borderRadius: 8,
+  diagonalStripes: {
+    position: 'absolute',
+    width: width * 2,
+    height: height * 2,
+    transform: [{ rotate: '45deg' }],
+  },
+  stripe: {
+    position: 'absolute',
+    width: 6,
+    height: height * 2,
+    opacity: 0.25,
+  },
+  content: {
+    flex: 1,
     padding: 16,
+  },
+  logoContainer: {
+    alignItems: 'center',
+    marginBottom: 24,
+    marginTop: 10,
+  },
+  logo: {
+    width: 200,
+    height: 60,
+  },
+  menuItem: {
+    backgroundColor: "white",
+    borderRadius: 10,
+    padding: 18,
     marginBottom: 16,
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-    elevation: 3, 
+    alignItems: 'center',
+    shadowRadius: 5,
+    shadowOpacity: 0.2,
   },
-  userId: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 4,
+  menuText: {
+    fontFamily: 'Arial',
+    fontWeight: "bold",
+    fontSize: 18,
     color: '#333',
   },
-  userName: {
-    fontSize: 16,
-    marginBottom: 4,
-    color: '#555',
-  },
-  userGroup: {
-    fontSize: 16,
-    color: '#777',
-  },
-  tinyLogo: {
-    width: 50,
-    height: 50,
-    marginLeft: 100,
-    marginTop: 10,
-    marginBottom: 10,
-    padding: 100,
-},
 });
