@@ -40,6 +40,7 @@ export default function Home() {
               <Text style={styles.userId}>Id: {item.id}</Text>
               <Text style={styles.userName}>Nome: {item.Nome}</Text>
               <Text style={styles.userGroup}>Grupo: {item.nome_grupo}</Text>
+              <Text style={styles.userGroup}>Email: {item.email}</Text>
             </View>
           )}
         />
@@ -90,6 +91,7 @@ const styles = StyleSheet.create({
   },
   userGroup: {
     fontSize: 16,
+    marginBottom: 4,
     color: '#777',
   },
   tinyLogo: {
