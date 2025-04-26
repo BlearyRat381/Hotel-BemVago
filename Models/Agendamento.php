@@ -18,7 +18,7 @@ class Agendamento extends Authenticatable
     protected $fillable = [
         'data',
         'hora',
-        'nome_Cliente',
+        'id_usuario',
         'id_servico',
     ];
 
