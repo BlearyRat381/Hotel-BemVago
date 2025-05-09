@@ -17,11 +17,12 @@ class Servico extends Authenticatable
     
     protected $fillable = [
         'nome_servico',
+        'valor_servico'
     ];
 
-    public function usuario()
+    public function Agendamento()
     {
-        return $this->hasMany(Agendamento::class, 'id_servico', 'id_servico');
+        return $this->hasMany(Agendamento::class, 'id_agendamentos', 'id_agendamentos');
     }
-
 }
+

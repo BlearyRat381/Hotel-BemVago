@@ -21,7 +21,7 @@ class Grupo extends Authenticatable
 
     public function usuario()
     {
-        return $this->hasMany(User::class, 'id_grupo', 'id_grupo');
+        return $this->hasMany(User::class, 'id_usuario', 'id_usuario');
     }
 
 }

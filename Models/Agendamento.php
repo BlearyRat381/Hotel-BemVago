@@ -18,13 +18,16 @@ class Agendamento extends Authenticatable
     protected $fillable = [
         'data',
         'hora',
-        'id_usuario',
         'id_servico',
     ];
 
-    public function usuario()
+    public function Servico()
     {
         return $this->belongTo(Servico::class, 'id_servico', 'id_servico');
     }
 
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'id_usuario', 'id_usuario');
+    }
 }
