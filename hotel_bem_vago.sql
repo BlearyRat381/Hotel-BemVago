@@ -27,12 +27,12 @@ SET time_zone = "+00:00";
 -- Estrutura para tabela `agenda`
 --
 
-CREATE TABLE `agenda` (
-  `id_agenda` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
-  `dia_de_entrada` int(11) NOT NULL,
-  `dia_de_saida` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+--  CREATE TABLE `agenda` (
+--   `id_agenda` int(11) NOT NULL,
+--   `id_usuario` int(11) NOT NULL,
+--   `dia_de_entrada` int(11) NOT NULL,
+--   `dia_de_saida` int(11) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -74,10 +74,22 @@ INSERT INTO `grupos` (`id_grupo`, `nome_grupo`) VALUES
 -- Estrutura para tabela `servicos`
 --
 
-CREATE TABLE `servicos` (
-  `id_servico` int(11) NOT NULL,
-  `nome_servico` varchar(64) NOT NULL,
-  `valor` float NOT NULL
+CREATE TABLE `quartos` (
+  `id_quarto` int(11) NOT NULL,
+  `nome_quarto` varchar(64) NOT NULL,
+  `valor_quarto` float NOT NULL,
+  `id_status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `status`
+--
+
+CREATE TABLE `status` (
+  `id_status` int(11) NOT NULL,
+  `nome_status` varchar(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -115,8 +127,8 @@ INSERT INTO `usuarios` (`id_usuario`, `nome`, `email`, `data_nascimento`, `id_gr
 --
 -- Índices de tabela `agenda`
 --
-ALTER TABLE `agenda`
-  ADD PRIMARY KEY (`id_agenda`);
+-- ALTER TABLE `agenda`
+--   ADD PRIMARY KEY (`id_agenda`);
 
 --
 -- Índices de tabela `agendamento`
@@ -133,8 +145,8 @@ ALTER TABLE `grupos`
 --
 -- Índices de tabela `servicos`
 --
-ALTER TABLE `servicos`
-  ADD PRIMARY KEY (`id_servico`);
+ALTER TABLE `quartos`
+  ADD PRIMARY KEY (`id_quarto`);
 
 --
 -- Índices de tabela `usuarios`
@@ -150,8 +162,8 @@ ALTER TABLE `usuarios`
 --
 -- AUTO_INCREMENT de tabela `agenda`
 --
-ALTER TABLE `agenda`
-  MODIFY `id_agenda` int(11) NOT NULL AUTO_INCREMENT;
+-- ALTER TABLE `agenda`
+--   MODIFY `id_agenda` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `agendamento`
@@ -168,8 +180,8 @@ ALTER TABLE `grupos`
 --
 -- AUTO_INCREMENT de tabela `servicos`
 --
-ALTER TABLE `servicos`
-  MODIFY `id_servico` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `quartos`
+  MODIFY `id_quarto` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`

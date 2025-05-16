@@ -8,28 +8,24 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Agendamento extends Authenticatable
+class Quarto extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $table = 'agendamentos';
-    protected $primaryKey = 'id_agendamentos';
+    protected $table = 'quartos';
+    protected $primaryKey = 'id_quarto';
 
      public $timestamps = false;
     
     protected $fillable = [
-        'data',
-        'id_quarto',
-        'id_usuario',
+        'nome_quarto',
+        'valor_quarto',
+        'id_status'
     ];
 
-    public function Quarto()
+    public function Agendamento()
     {
-        return $this->belongTo(Quarto::class, 'id_quarto', 'id_quarto');
-    }
-
-    public function usuario()
-    {
-        return $this->belongsTo(User::class, 'id_usuario', 'id_usuario');
+        return $this->hasMany(Agendamento::class, 'id_agendamentos', 'id_agendamentos');
     }
 }
+

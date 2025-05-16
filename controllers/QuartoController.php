@@ -7,24 +7,24 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
-use App\Models\Servico;
+use App\Models\Quarto;
 
-class ServicoController extends BaseController
+class QuartoController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function getServico(){
+    public function getQuarto(){
 
-        $servicos = Servico::all();
+        $quartos = Quarto::all();
 
-    return response()->json($servicos);
+    return response()->json($quartos);
 }
-    public function createServico(Request $request){
-        $servicoCriado = Servico::create([
-            'nome_servico' => $request->nome_servico,
-            'valor_servico' => $request->valor_servico,
+    public function createQuarto(Request $request){
+        $quartoCriado = Quarto::create([
+            'nome_quarto' => $request->nome_quarto,
+            'valor_quarto' => $request->valor_quarto,
         ]);
-        return response() ->json($servicoCriado);
+        return response() ->json($quartoCriado);
     }
 }
 
