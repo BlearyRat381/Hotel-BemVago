@@ -14,6 +14,8 @@ class Servico extends Authenticatable
 
     protected $table = 'servicos';
     protected $primaryKey = 'id_servico';
+
+     public $timestamps = false;
     
     protected $fillable = [
         'nome_servico',

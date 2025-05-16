@@ -14,6 +14,8 @@ class Grupo extends Authenticatable
 
     protected $table = 'grupos';
     protected $primaryKey = 'id_grupo';
+
+     public $timestamps = false;
     
     protected $fillable = [
         'nome_grupo',

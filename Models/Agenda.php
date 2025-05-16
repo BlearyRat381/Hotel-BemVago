@@ -14,7 +14,9 @@ class Agenda extends Authenticatable
 
     protected $table = 'agendas';
     protected $primaryKey = 'id_agenda';
-    
+
+     public $timestamps = false;
+
     protected $fillable = [
         'data',
         'hora',

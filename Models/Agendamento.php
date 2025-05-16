@@ -14,6 +14,8 @@ class Agendamento extends Authenticatable
 
     protected $table = 'agendamentos';
     protected $primaryKey = 'id_agendamentos';
+
+     public $timestamps = false;
     
     protected $fillable = [
         'data',
