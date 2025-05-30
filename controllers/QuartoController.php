@@ -18,7 +18,8 @@ class QuartoController extends BaseController
         $quartos = Quarto::all();
 
     return response()->json($quartos);
-}
+    }
+
     public function createQuarto(Request $request){
         $quartoCriado = Quarto::create([
             'nome_quarto' => $request->nome_quarto,
@@ -26,6 +27,15 @@ class QuartoController extends BaseController
         ]);
         return response() ->json($quartoCriado);
     }
+    public function atualizarQuarto(Request $request){
+        $quarto = Quarto::find($request -> id_quarto)
+        ->update($request->only(['nome_quarto', 'valor_quarto']));
+        if (!$quarto){
+            return response()->json(['erro' => 'Quarto não encontrado'], 404);
+        }
+        return response()->json(['mensagem' => 'Quarto atualizado com sucesso']);
+    }
+}
 }
 
-/*https://localhost/HotelBemVago/criar_servicos?nome_servico=carlos&valor_servico=carlos@gmail.com
+/*https://localhost/HotelBemVago/criar-servicos?nome_servico=carlos&valor_servico=carlos@gmail.com */

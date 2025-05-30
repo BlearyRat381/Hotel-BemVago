@@ -19,13 +19,23 @@ class GrupoController extends BaseController
 
     return response()->json($grupos);
     
-}
+    }
+
     public function createGrupos(Request $request){
         $gruposCriado = Grupo::create([
             'nome_grupo' => $request->nome_grupo,
         ]);
         return response() ->json($gruposCriado);
     }
+    public function atualizarGrupo(Request $request){
+        $grupo = Grupo::find($request -> id_grupo)
+        ->update($request->only(['nome_grupo']));
+        if (!$grupo){
+            return response()->json(['erro' => 'Grupo não encontrado'], 404);
+        }
+        return response()->json(['mensagem' => 'Grupo atualizado com sucesso']);
+    }
+}
 }
 
-/*https://localhost/HotelBemVago/criar_grupos?nome_grupo=carlos
+/*https://localhost/HotelBemVago/criar-grupos?nome_grupo=carlos */

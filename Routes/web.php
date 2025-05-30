@@ -5,26 +5,27 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\QuartoController;
 use App\Http\Controllers\AgendamentoController;
 use App\Http\Controllers\GrupoController;
-use App\Http\Controllers\AgendaController;
+use App\Http\Controllers\StatusController;
 
 
 Route::get('usuarios', [UserController::class, 'getUsuarios']);
-Route::get('criar_usuarios', [UserController::class, 'createUsuario']);
+Route::get('criar-usuarios', [UserController::class, 'createUsuario']);
+Route::get('atualizar-usuario/{id_usuario}', [UserController::class, 'atualizarUsuarios']);
 
 Route::get('quartos', [QuartoController::class, 'getQuarto']);
-Route::get('criar_quartos', [QuartoController::class, 'createQuarto']);
+Route::get('criar-quartos', [QuartoController::class, 'createQuarto']);
+Route::get('atualizar-quarto/{id_quarto}', [UserController::class, 'atualizarQuarto']);
 
 Route::get('agendamentos', [AgendamentoController::class, 'getAgendamento']);
-Route::get('criar_agendamentos', [AgendamentoController::class, 'createAgendamento']);
+Route::get('criar-agendamentos', [AgendamentoController::class, 'createAgendamento']);
+Route::get('atualizar-agendamento/{id_agendamento}', [UserController::class, 'atualizarAgendamento']);
 
 Route::get('grupos', [GrupoController::class, 'getGrupos']);
-Route::get('criar_grupos', [GrupoController::class, 'createGrupos']);
+Route::get('criar-grupos', [GrupoController::class, 'createGrupos']);
+Route::get('atualizar-grupo/{id_grupo}', [UserController::class, 'atualizarGrupo']);
 
 Route::get('status', [StatusController::class, 'getStatus']);
-Route::get('criar_status', [StatusController::class, 'createStatus']);
+Route::get('criar-status', [StatusController::class, 'createStatus']);
+Route::get('atualizar-status/{id_status}', [UserController::class, 'atualizarStatus']);
 
-/*
-Route::get('agendas', [AgendaController::class, 'getAgenda']);
-Route::get('criar_agendas', [AgendaController::class, 'createAgenda']);
-*/
 

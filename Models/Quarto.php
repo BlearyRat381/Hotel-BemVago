@@ -28,4 +28,3 @@ class Quarto extends Authenticatable
         return $this->hasMany(Agendamento::class, 'id_agendamentos', 'id_agendamentos');
     }
 }
-

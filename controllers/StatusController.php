@@ -9,7 +9,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use App\Models\Status;
 
-class GrupoController extends BaseController
+class StatusController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
@@ -19,13 +19,24 @@ class GrupoController extends BaseController
 
     return response()->json($grupos);
     
-}
+    }
+
     public function createStatus(Request $request){
         $statusCriado = Status::create([
             'nome_status' => $request->nome_status,
         ]);
         return response() ->json($statusCriado);
     }
+
+    public function atualizarStatus(Request $request){
+        $status = Status::find($request -> id_status)
+        ->update($request->only(['nome_status']));
+        if (!$status){
+            return response()->json(['erro' => 'Status não encontrado'], 404);
+        }
+        return response()->json(['mensagem' => 'Status atualizado com sucesso']);
+    }
+}
 }
 
-/*https://localhost/HotelBemVago/criar_status?nome_status=Vago
+/*https://localhost/HotelBemVago/criar-status?nome_status=Vago */

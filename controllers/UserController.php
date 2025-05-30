@@ -18,8 +18,9 @@ class UserController extends BaseController
         $usuarios = User::all();
 
     return response()->json($usuarios);
- }
-   public function createUsuario(Request $request){
+    }
+
+    public function createUsuario(Request $request){
         $usuarioCriado = User::create([
             'nome' => $request->nome,
             'email' => $request->email,
@@ -28,6 +29,15 @@ class UserController extends BaseController
         ]);
         return response() ->json($usuarioCriado);
     }
+
+    public function atualizarUsuarios(Request $request){
+        $usuario = User::find($request -> id_usuario)
+        ->update($request->only(['nome', 'email', 'data_nascimento', 'id_grupo']));
+        if (!$usuario){
+            return response()->json(['erro' => 'Usuário não encontrado'], 404);
+        }
+        return response()->json(['mensagem' => 'Usuário atualizado com sucesso']);
+    }
 }
 
-/* https://localhost/HotelBemVago/criar_usuarios?nome=carlos&email=carlos@gmail.com&data_nascimento=2007-06-27&id_grupo=3
+/* https://localhost/HotelBemVago/criar-usuarios?nome=carlos&email=carlos@gmail.com&data_nascimento=2007-06-27&id_grupo=3 */

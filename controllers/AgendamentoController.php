@@ -18,15 +18,23 @@ class AgendamentoController extends BaseController
         $agendamentos = Agendamento::all();
         
     return response()->json($agendamentos);
-}
+    }
+
     public function createAgendamentos(Request $request){
         $agendamentosCriado = Agendamento::create([
             'data' => $request->data,
             'hora' => $request->hora,
-            'id_servico' => $request->id_servico,
+            'id_quarto' => $request->id_quarto,
         ]);
         return response() ->json($agendamentosCriado);
     }
+    public function atualizarAgendamento(Request $request){
+        $agendamento = Agendamento::find($request -> id_agendamento)
+        ->update($request->only(['data', 'hora', 'id_quarto']));
+        if (!$agendamento){
+            return response()->json(['erro' => 'Agendamento não encontrado'], 404);
+        }
+        return response()->json(['mensagem' => 'Agendamento atualizado com sucesso']);
+    }
 }
-
-/*https://localhost/HotelBemVago/criar_agendamentos?data=carlos&hora=carlos@gmail.com&id_servico=2007-06-27
+}
