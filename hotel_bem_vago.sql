@@ -63,7 +63,7 @@ INSERT INTO `grupos` (`id_grupo`, `nome_grupo`) VALUES
 
 CREATE TABLE `quartos` (
   `id_quarto` int(11) NOT NULL,
-  `nome_quarto` varchar(64) NOT NULL,
+  `num_quarto` varchar(64) NOT NULL,
   `valor_quarto` float NOT NULL,
   `id_status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

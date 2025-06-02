@@ -22,14 +22,14 @@ class QuartoController extends BaseController
 
     public function createQuarto(Request $request){
         $quartoCriado = Quarto::create([
-            'nome_quarto' => $request->nome_quarto,
+            'num_quarto' => $request->num_quarto,
             'valor_quarto' => $request->valor_quarto,
         ]);
         return response() ->json($quartoCriado);
     }
     public function atualizarQuarto(Request $request){
         $quarto = Quarto::find($request -> id_quarto)
-        ->update($request->only(['nome_quarto', 'valor_quarto']));
+        ->update($request->only(['num_quarto', 'valor_quarto']));
         if (!$quarto){
             return response()->json(['erro' => 'Quarto não encontrado'], 404);
         }

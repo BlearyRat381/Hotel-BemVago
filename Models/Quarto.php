@@ -18,7 +18,7 @@ class Quarto extends Authenticatable
      public $timestamps = false;
     
     protected $fillable = [
-        'nome_quarto',
+        'num_quarto',
         'valor_quarto',
         'id_status'
     ];
