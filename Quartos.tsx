@@ -3,36 +3,36 @@ import React, { useEffect, useState } from 'react';
 import { Dimensions, FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
 const { width, height } = Dimensions.get('window');
 
-type Agendamento = {
-  id_agendamento: number;
-  id_usuario: number;
+type Room = {
   id_quarto: number;
-  data: number;
+  num_quarto: number;
+  valor_quarto: number;
+  id_status: number;
 };
-
 export default function Home() {
-   const [agendamentos, setAgendamentos] = useState<Agendamento[] | null>(null);
-  
-  
-    useEffect(() => {
-  
-      const getAgendamento = async () => {
-        try {
-          const response = await fetch('http://localhost/HotelBemVago/agendamentos');
-          // const response = await fetch('https://novo.mobi-rio.rio.br/get-avisos');
-          const data = await response.json();
-          setAgendamentos(data.agendamentos);
-          console.log('agendamentos', data.agendamentos);
-          console.error('agendamentos:', data.agendamentos);
-        } catch (error) {
-          console.error('Erro ao buscar agendamentos:', error);
-        }
-      };
-       getAgendamento();
+    const [rooms, setRooms] = useState<Room[] | null>(null);
+
+
+  useEffect(() => {
+
+    const getQuartos = async () => {
+      try {
+        const response = await fetch('http://localhost/HotelBemVago/quartos');
+        // const response = await fetch('https://novo.mobi-rio.rio.br/get-avisos');
+        const data = await response.json();
+        setRooms(data.quartos);
+        console.log('quartos', data.quartos);
+        console.error('rooms:', data.quartos);
+      } catch (error) {
+        console.error('Erro ao buscar quarto:', error);
+      }
+    };
+
+    getQuartos();
   }, []);
   return (
     <View style={styles.container}>
-      {/* Fundo listrado diagonal colorido */}
+      {/* Background listrado diagonal */}
       <View style={StyleSheet.absoluteFill}>
         <View style={styles.diagonalStripes}>
           {Array.from({ length: 60 }).map((_, i) => (
@@ -55,33 +55,36 @@ export default function Home() {
         </View>
       </View>
 
-      {/* Conteúdo da lista de agendamentos */}
-      <ScrollView>
-         <View style={styles.botoesContainer}>
-            <View style={styles.voltar}>
-                <Link href="/">
-                    <Text style={styles.voltou}>←</Text>
-                </Link>
-            </View>     
-         </View>
+      {/* Conteúdo com os serviços */}
+        <ScrollView style={styles.listContainer}>
+          <View style={styles.botoesContainer}>
+              <View style={styles.voltar}>
+                    <Link href="/">
+                      <Text style={styles.voltou}>←</Text>
+                    </Link>
+               </View>
+          </View>
         <FlatList
-          data={agendamentos}
-                           keyExtractor={(item) => item.id_agendamento.toString()}
-                           renderItem={({ item }) => (
-                             <View style={styles.userContainer}>
-                               <Text style={styles.userId}>Id: {item.id_agendamento}</Text>
-                               <Text style={styles.userName}>Cliente: {item.id_usuario}</Text>
-                               <Text style={styles.userGroup}>Quarto: {item.id_quarto}</Text>
-                               <Text style={styles.userGroup}>Data: {item.data}</Text>
-                             </View>
-                           )}
+          data={rooms}
+          keyExtractor={(item) => item.id_quarto.toString()}
+          renderItem={({ item }) => (
+            <View style={styles.card}>
+              <Text style={styles.serviceId}>Id: {item.id_quarto}</Text>
+              <Text style={styles.serviceName}>Número do Quarto: {item.num_quarto}</Text>
+              <Text style={styles.serviceName}>Número do Quarto: {item.valor_quarto}</Text>
+              <Text style={styles.serviceName}>Número do Quarto: {item.id_status}</Text>
+            </View>
+          )}
         />
-        <View style={styles.cadastrar}>
-              <Link href="/CadastrarAgendamentos">
-                    <Text style={styles.cadastro}>+</Text>
-              </Link>
-        </View>
-      </ScrollView>
+        
+                  
+                  <View style={styles.cadastrar}>
+                    <Link href="/CadastrarQuartos">
+                      <Text style={styles.cadastro}>+</Text>
+                    </Link>
+                  </View>
+                  
+       </ScrollView>
     </View>
   );
 }
@@ -105,40 +108,28 @@ const styles = StyleSheet.create({
   listContainer: {
     padding: 16,
   },
-  userContainer: {
+  card: {
     backgroundColor: '#ffffff',
-    borderRadius: 8,
-    padding: 16,
+    borderRadius: 12,
+    padding: 18,
     marginBottom: 16,
     shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-    elevation: 3,
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 4,
   },
-  userId: {
+  serviceId: {
     fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 4,
-    color: '#333',
+    fontWeight: '600',
+    color: '#444',
+    marginBottom: 6,
   },
-  userName: {
+  serviceName: {
     fontSize: 16,
-    marginBottom: 4,
     color: '#555',
   },
-  userGroup: {
-    fontSize: 16,
-    color: '#777',
-  },
-  tinyLogo: {
-    width: 50,
-    height: 50,
-    marginLeft: 100,
-    marginTop: 10,
-    marginBottom: 10,
-    padding: 100,
-  },
-  cadastro: {
+   cadastro: {
     fontWeight: 'bold',
     fontSize: 20,
     color: 'white',

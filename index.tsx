@@ -1,5 +1,5 @@
-import { Image, StyleSheet, View, Text, Pressable, Dimensions } from 'react-native';
 import { Link } from 'expo-router';
+import { Dimensions, Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
 
@@ -45,9 +45,9 @@ export default function HomeScreen() {
           </Pressable>
         </Link>
 
-        <Link style={styles.menuItem} href='/Servicos' asChild>
+        <Link style={styles.menuItem} href='/Quartos' asChild>
           <Pressable>
-            <Text style={styles.menuText}>Serviços</Text>
+            <Text style={styles.menuText}>Quartos</Text>
           </Pressable>
         </Link>
 
