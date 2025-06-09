@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 28/05/2025 às 21:44
+-- Tempo de geração: 06/06/2025 às 22:56
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -31,8 +31,17 @@ CREATE TABLE `agendamento` (
   `id_agendamento` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `id_quarto` int(11) NOT NULL,
-  `id_agenda` int(11) NOT NULL
+  `data` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `agendamento`
+--
+
+INSERT INTO `agendamento` (`id_agendamento`, `id_usuario`, `id_quarto`, `data`) VALUES
+(1, 4, 1, '2025-06-09'),
+(2, 2, 1, '2025-06-09'),
+(3, 3, 7, '2025-06-22');
 
 -- --------------------------------------------------------
 
@@ -63,10 +72,18 @@ INSERT INTO `grupos` (`id_grupo`, `nome_grupo`) VALUES
 
 CREATE TABLE `quartos` (
   `id_quarto` int(11) NOT NULL,
-  `num_quarto` varchar(64) NOT NULL,
+  `num_quarto` int(11) NOT NULL,
   `valor_quarto` float NOT NULL,
   `id_status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `quartos`
+--
+
+INSERT INTO `quartos` (`id_quarto`, `num_quarto`, `valor_quarto`, `id_status`) VALUES
+(1, 321, 450, 1),
+(2, 13, 220, 1);
 
 -- --------------------------------------------------------
 
@@ -84,7 +101,9 @@ CREATE TABLE `status` (
 --
 
 INSERT INTO `status` (`id_status`, `nome_status`) VALUES
-(1, 'Vago');
+(1, 'Vago'),
+(2, 'Ocupado'),
+(3, 'Manutenção');
 
 -- --------------------------------------------------------
 
@@ -112,7 +131,9 @@ INSERT INTO `usuarios` (`id_usuario`, `nome`, `email`, `data_nascimento`, `id_gr
 (5, 'fasda', 'fasda@mail.com', '2007-06-26', 3),
 (6, 'fasda', 'fasda@mail.com', '2007-06-26', 3),
 (7, 'jhibjhb', 'jnjin', '2007-06-26', 2),
-(8, 'jhibjhb2', 'jnjin2', '2007-06-26', 2);
+(8, 'jhibjhb2', 'jnjin2', '2007-06-26', 2),
+(9, 'lucas', 'lucasautista@mail.com', '2008-07-03', 3),
+(10, 'laura', 'laura@mail.com', '2007-04-01', 3);
 
 --
 -- Índices para tabelas despejadas
@@ -157,7 +178,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `agendamento`
 --
 ALTER TABLE `agendamento`
-  MODIFY `id_agendamento` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_agendamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `grupos`
@@ -169,19 +190,19 @@ ALTER TABLE `grupos`
 -- AUTO_INCREMENT de tabela `quartos`
 --
 ALTER TABLE `quartos`
-  MODIFY `id_quarto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_quarto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `status`
 --
 ALTER TABLE `status`
-  MODIFY `id_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
